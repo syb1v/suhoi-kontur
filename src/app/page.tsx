@@ -1,4 +1,4 @@
-import { ArrowRight, Check, CloudRain, CurrencyRub, Drop, FileText, Funnel, HouseLine, ShieldCheck, Waves } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Check, ClipboardText, CloudRain, CurrencyRub, Drop, FileText, Funnel, HouseLine, Ruler, ShieldCheck, Van, Waves, Wrench } from "@phosphor-icons/react/dist/ssr";
 import { Calculator } from "@/components/Calculator";
 import { Faq } from "@/components/Faq";
 import { ProblemExplorer } from "@/components/ProblemExplorer";
@@ -6,6 +6,7 @@ import { CutawayDiagram } from "@/components/SectionDiagram";
 import { Reveal } from "@/components/site/Reveal";
 import { CaseFigure } from "@/components/site/CaseFigure";
 import { HeroDiagram } from "@/components/site/HeroDiagram";
+import { ProcessRail } from "@/components/site/ProcessRail";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { getPublicData } from "@/lib/content";
@@ -13,7 +14,9 @@ import { publicImage, readPublicText } from "@/lib/visuals";
 
 const serviceIcons = [HouseLine, Drop, CloudRain, Waves, Funnel];
 
-const processSteps = [
+const processIcons = [ClipboardText, Ruler, Van, FileText, Wrench, ShieldCheck];
+
+const processSteps: [string, string][] = [
   ["Заявка", "Описываете проблему — мы задаём уточняющие вопросы"],
   ["Предварительная схема", "Считаем ориентир и показываем логику системы"],
   ["Выезд инженера", "Замер, рельеф, грунт, точка сброса — 0 ₽"],
@@ -99,7 +102,7 @@ export default async function Home() {
       <section className="hero">
         {heroImage ? (
           <div className="hero-bg" aria-hidden="true">
-            <img src={heroImage} alt="" />
+            <img src={heroImage} alt="" width={1440} height={2560} />
           </div>
         ) : null}
         <div className="wrap hero-inner">
@@ -142,6 +145,8 @@ export default async function Home() {
         </div>
       </section>
 
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink-2), var(--paper) 62%)" }} />
+
       <section className="wrap section">
         <Reveal>
           <div className="section-head">
@@ -158,6 +163,8 @@ export default async function Home() {
         </Reveal>
       </section>
 
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--ink) 62%)" }} />
+
       <section className="section section-dark" id="services">
         <div className="wrap">
           <Reveal>
@@ -172,7 +179,7 @@ export default async function Home() {
               const Icon = serviceIcons[i % serviceIcons.length];
               return (
                 <Reveal key={s.id} delay={i * 50}>
-                  <div className="service-row">
+                  <a className="service-row" href={s.href ?? "/#estimate"}>
                     <span className="service-num">0{i + 1}</span>
                     <span className="service-icon"><Icon size={26} weight="light" /></span>
                     <div>
@@ -180,7 +187,7 @@ export default async function Home() {
                       <p className="service-note">{s.note}</p>
                     </div>
                     <span className="service-arrow"><ArrowRight size={20} weight="bold" /></span>
-                  </div>
+                  </a>
                 </Reveal>
               );
             })}
@@ -188,6 +195,8 @@ export default async function Home() {
           )}
         </div>
       </section>
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink), var(--paper-2) 62%)" }} />
 
       <section className="section section-mist" id="estimate">
         <div className="wrap">
@@ -214,15 +223,16 @@ export default async function Home() {
         </div>
       </section>
 
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper-2), var(--paper) 62%)" }} />
+
       {cases.length > 0 && (
       <section className="wrap section" id="cases">
         <Reveal>
           <div className="section-head">
-            <span className="kicker">Демонстрационные объекты</span>
+            <span className="kicker">Объекты и решения</span>
             <h2 className="h2">Результат виден после первого дождя.</h2>
             <p className="lead">
-              Структура кейса настоящая, данные — демонстрационные.
-              Реальные фото, погонаж и сметы добавим через админку.
+              Локация, задача, состав работ, погонаж и срок — по каждому объекту.
             </p>
           </div>
         </Reveal>
@@ -231,7 +241,6 @@ export default async function Home() {
             <Reveal key={c.id} delay={i * 70}>
               <article className="case-card">
                 <div className="case-figure">
-                  <span className="case-tag">Демо-данные</span>
                   {c.image ? (
                     <img className="case-photo" src={c.image} alt={c.title} loading="lazy" />
                   ) : (
@@ -254,6 +263,8 @@ export default async function Home() {
         </div>
       </section>
       )}
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--ink) 62%)" }} />
 
       <section className="section section-dark" id="technology">
         <div className="wrap">
@@ -290,7 +301,7 @@ export default async function Home() {
               <Reveal key={photo.src} delay={i * 70}>
                 <article className="work-card">
                   <div className="work-photo">
-                    <img src={photo.src as string} alt={photo.title} loading="lazy" style={{ objectPosition: photo.position }} />
+                    <img src={photo.src as string} alt={photo.title} width={1440} height={2560} loading="lazy" style={{ objectPosition: photo.position }} />
                   </div>
                   <div className="work-caption">
                     <strong>{photo.title}</strong>
@@ -304,6 +315,8 @@ export default async function Home() {
         </section>
       )}
 
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink), var(--paper-2) 62%)" }} />
+
       <section className="section section-mist" id="process">
         <div className="wrap">
           <Reveal>
@@ -313,18 +326,12 @@ export default async function Home() {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <div className="timeline">
-              {processSteps.map(([title, text], i) => (
-                <div className="tl-step" key={title}>
-                  <span className="tl-num">0{i + 1}</span>
-                  <strong>{title}</strong>
-                  <p>{text}</p>
-                </div>
-              ))}
-            </div>
+            <ProcessRail steps={processSteps} icons={processIcons} />
           </Reveal>
         </div>
       </section>
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper-2), var(--ink) 62%)" }} />
 
       <section className="section section-dark">
         <div className="wrap">
@@ -348,6 +355,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink), var(--cyan) 62%)" }} />
 
       <section className="section section-cyan">
         <div className="wrap b2b">
@@ -380,6 +389,8 @@ export default async function Home() {
         </div>
       </section>
 
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--cyan), var(--paper) 62%)" }} />
+
       <section className="wrap section" id="faq">
         <div className="faq-layout">
           <Reveal>
@@ -394,6 +405,8 @@ export default async function Home() {
           </Reveal>
         </div>
       </section>
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--paper-2) 62%)" }} />
 
       <section className="section section-mist">
         <div className="wrap geo">
@@ -426,6 +439,8 @@ export default async function Home() {
           </Reveal>
         </div>
       </section>
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper-2), var(--ink) 62%)" }} />
 
       <section className="final-cta">
         <div className="wrap">

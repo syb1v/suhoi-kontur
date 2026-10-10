@@ -70,6 +70,9 @@ function ServiceForm({ row }: { row?: ServiceRow }) {
       <label className="field">Пояснение
         <input name="note" defaultValue={row?.note ?? ""} placeholder="Глубинный и поверхностный отвод воды" />
       </label>
+      <label className="field">Ссылка
+        <input name="href" defaultValue={row?.href ?? ""} placeholder="/drenazh-uchastka" />
+      </label>
       <label className="field field-narrow">Порядок
         <input name="sortOrder" type="number" defaultValue={row?.sortOrder ?? 0} />
       </label>

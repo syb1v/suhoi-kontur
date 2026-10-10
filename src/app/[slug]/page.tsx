@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ClipboardText, FileText, Ruler, ShieldCheck, Van } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/site/Reveal";
 import { HeroDiagram } from "@/components/site/HeroDiagram";
+import { ProcessRail } from "@/components/site/ProcessRail";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { getSettings } from "@/lib/content";
@@ -21,7 +22,7 @@ const pages: Record<string, { title: string; description: string; intro: string;
   "krymsk": { title: "Дренаж участка в Крымске", description: "Инженерная защита участков и фундаментов в Крымске.", intro: "Собираем поверхностный и глубинный сток, защищаем фундамент и возвращаем участку предсказуемое состояние после дождя.", type: "region" },
 };
 
-const steps = [
+const steps: [string, string][] = [
   ["Предварительный разговор", "Описываете ситуацию — мы задаём уточняющие вопросы"],
   ["Выезд инженера", "Замер рельефа, оценка грунта, выбор точки сброса"],
   ["Схема и спецификация", "Трассы, уклоны, колодцы, крепёж — в одном документе"],
@@ -92,16 +93,12 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
             <p className="lead">Определяем источник воды, смотрим рельеф и грунт, проверяем глубину фундамента — только после этого выбираем состав системы.</p>
           </div>
         </Reveal>
-        <div className="timeline timeline-5">
-          {steps.map(([title, text], i) => (
-            <div className="tl-step" key={title}>
-              <span className="tl-num">0{i + 1}</span>
-              <strong>{title}</strong>
-              <p>{text}</p>
-            </div>
-          ))}
-        </div>
+        <Reveal delay={80}>
+          <ProcessRail steps={steps} icons={[ClipboardText, Van, Ruler, FileText, ShieldCheck]} five />
+        </Reveal>
       </section>
+
+      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--ink))" }} />
 
       <section className="final-cta">
         <div className="wrap">

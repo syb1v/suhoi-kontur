@@ -75,9 +75,11 @@ export async function deleteCase(formData: FormData) {
 export async function upsertService(formData: FormData) {
   await guard();
   const id = Number(formData.get("id")) || null;
+  const hrefRaw = String(formData.get("href") ?? "").trim().slice(0, 200);
   const data = {
     title: String(formData.get("title") ?? "").trim().slice(0, 200),
     note: String(formData.get("note") ?? "").trim().slice(0, 300),
+    href: hrefRaw || null,
     visible: formData.get("visible") === "on",
     sortOrder: Number(formData.get("sortOrder")) || 0,
   };

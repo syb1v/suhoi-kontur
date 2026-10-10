@@ -27,7 +27,7 @@ export type PublicCase = {
   image: string | null;
 };
 
-export type PublicService = { id: number; title: string; note: string };
+export type PublicService = { id: number; title: string; note: string; href: string | null };
 
 const defaultCases: PublicCase[] = [
   { id: 1, site: "Краснодар · КП «Новая Европа»", title: "Кольцевой дренаж коттеджа", body: "Вода стояла у отмостки после ливней, цоколь постоянно сырел. Смонтирован кольцевой контур с выводом в колодец.", length: "86 м", days: "6 дней", price: "260 000 ₽", image: null },
@@ -36,11 +36,11 @@ const defaultCases: PublicCase[] = [
 ];
 
 const defaultServices: PublicService[] = [
-  { id: 1, title: "Дренаж фундамента", note: "Пристенный и кольцевой контур вокруг дома" },
-  { id: 2, title: "Дренаж участка", note: "Глубинный и поверхностный отвод воды" },
-  { id: 3, title: "Ливневая канализация", note: "Вода с кровли, отмостки и площадок" },
-  { id: 4, title: "Водопонижение", note: "Сложные глинистые и переувлажнённые грунты" },
-  { id: 5, title: "Колодцы и насосные станции", note: "Сбор, фильтрация и принудительный сброс" },
+  { id: 1, title: "Дренаж фундамента", note: "Пристенный и кольцевой контур вокруг дома", href: "/drenazh-fundamenta" },
+  { id: 2, title: "Дренаж участка", note: "Глубинный и поверхностный отвод воды", href: "/drenazh-uchastka" },
+  { id: 3, title: "Ливневая канализация", note: "Вода с кровли, отмостки и площадок", href: "/livnevaya-kanalizaciya" },
+  { id: 4, title: "Водопонижение", note: "Сложные глинистые и переувлажнённые грунты", href: "/vodoponizhenie" },
+  { id: 5, title: "Колодцы и насосные станции", note: "Сбор, фильтрация и принудительный сброс", href: "/septiki-i-kolodcy" },
 ];
 
 export async function getSettings(): Promise<SiteSettings> {
@@ -68,7 +68,7 @@ export async function getPublicData(): Promise<{ settings: SiteSettings; cases: 
     return {
       settings,
       cases: caseRows.map((c) => ({ id: c.id, site: c.site, title: c.title, body: c.body, length: c.length, days: c.days, price: c.price, image: c.image })),
-      services: serviceRows.map((s) => ({ id: s.id, title: s.title, note: s.note })),
+      services: serviceRows.map((s) => ({ id: s.id, title: s.title, note: s.note, href: s.href })),
     };
   } catch {
     return { settings: { ...defaultSettings }, cases: defaultCases, services: defaultServices };

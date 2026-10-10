@@ -47,6 +47,7 @@ export const services = sqliteTable("services", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title").notNull(),
   note: text("note").notNull(),
+  href: text("href"),
   visible: integer("visible", { mode: "boolean" }).notNull().default(true),
   sortOrder: integer("sort_order").notNull().default(0),
 });

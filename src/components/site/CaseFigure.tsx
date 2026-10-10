@@ -9,26 +9,32 @@ export function CaseFigure({ variant }: { variant: number }) {
   const [hx, hy, hw, hh] = l.house;
   return (
     <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <pattern id={`case-grid-${variant % layouts.length}`} width="26" height="26" patternUnits="userSpaceOnUse">
+          <path d="M 26 0 L 0 0 0 26" fill="none" stroke="rgba(53,150,161,0.13)" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="400" height="260" fill={`url(#case-grid-${variant % layouts.length})`} />
       <path className="case-contour" d={l.contour} />
       <path className="case-contour" d="M 8 128 L 28 128 M 372 84 L 392 84" />
       <rect className="case-plot" x="22" y="26" width="356" height="208" />
-      <line x1="22" y1="26" x2="38" y2="26" stroke="rgba(144,170,176,0.6)" strokeWidth="2" />
-      <line x1="22" y1="26" x2="22" y2="42" stroke="rgba(144,170,176,0.6)" strokeWidth="2" />
+      <line x1="22" y1="26" x2="38" y2="26" stroke="rgba(12,26,32,0.45)" strokeWidth="2" />
+      <line x1="22" y1="26" x2="22" y2="42" stroke="rgba(12,26,32,0.45)" strokeWidth="2" />
 
       <g transform={`rotate(${l.rotate} ${hx + hw / 2} ${hy + hh / 2})`}>
         <rect className="case-house" x={hx} y={hy} width={hw} height={hh} />
-        <rect className="case-plot" x={hx + 12} y={hy + 12} width={hw - 24} height={hh - 24} strokeDasharray="4 4" />
+        <rect className="case-plot-inner" x={hx + 12} y={hy + 12} width={hw - 24} height={hh - 24} strokeDasharray="4 4" />
       </g>
 
       <path className="case-blue-line" d={l.drain} />
 
-      <circle cx={l.well[0]} cy={l.well[1]} r="9" fill="#0c1a20" stroke="#17c3dd" strokeWidth="1.6" />
-      <path d={`M ${l.well[0] - 5} ${l.well[1]} L ${l.well[0] + 5} ${l.well[1]} M ${l.well[0]} ${l.well[1] - 5} L ${l.well[0]} ${l.well[1] + 5}`} stroke="#17c3dd" strokeWidth="1.2" />
+      <circle cx={l.well[0]} cy={l.well[1]} r="9" fill="#f4f9f8" stroke="#07879e" strokeWidth="1.6" />
+      <path d={`M ${l.well[0] - 5} ${l.well[1]} L ${l.well[0] + 5} ${l.well[1]} M ${l.well[0]} ${l.well[1] - 5} L ${l.well[0]} ${l.well[1] + 5}`} stroke="#07879e" strokeWidth="1.2" />
 
-      <line x1={l.well[0] + 12} y1={l.well[1]} x2={l.well[0] + 42} y2={l.well[1]} stroke="#17c3dd" strokeWidth="1.6" />
-      <path d={`M ${l.well[0] + 42} ${l.well[1] - 4} L ${l.well[0] + 50} ${l.well[1]} L ${l.well[0] + 42} ${l.well[1] + 4} Z`} fill="#17c3dd" />
+      <line x1={l.well[0] + 12} y1={l.well[1]} x2={l.well[0] + 42} y2={l.well[1]} stroke="#07879e" strokeWidth="1.6" />
+      <path d={`M ${l.well[0] + 42} ${l.well[1] - 4} L ${l.well[0] + 50} ${l.well[1]} L ${l.well[0] + 42} ${l.well[1] + 4} Z`} fill="#07879e" />
 
-      <text x="30" y="244" fontFamily="var(--font-mono), monospace" fontSize="9.5" letterSpacing="0.14em" fill="#90aab0">СХЕМА / М 1:250</text>
+      <text x="30" y="244" fontFamily="var(--font-mono), monospace" fontSize="9.5" letterSpacing="0.14em" fill="#7b8f94">СХЕМА / М 1:250</text>
     </svg>
   );
 }
