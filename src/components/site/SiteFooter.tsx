@@ -15,7 +15,8 @@ const geoLinks = [
   ["Крымск", "/krymsk"],
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ phone = "+7 (000) 000-00-00", email = "info@suhoi-kontur.ru" }: { phone?: string; email?: string }) {
+  const tel = `tel:${phone.replace(/[^+\d]/g, "")}`;
   return (
     <footer className="footer">
       <div className="wrap footer-main">
@@ -43,8 +44,8 @@ export function SiteFooter() {
         </div>
         <div className="footer-col">
           <h4>Контакты</h4>
-          <a href="tel:+78000000000">+7 (000) 000-00-00</a>
-          <a href="mailto:info@suhoi-kontur.ru">info@suhoi-kontur.ru</a>
+          <a href={tel}>{phone}</a>
+          <a href={`mailto:${email}`}>{email}</a>
           <a href="/#estimate">Выезд инженера — бесплатно</a>
           <a href="/llms.txt">Информация для ИИ-систем</a>
         </div>
@@ -59,11 +60,12 @@ export function SiteFooter() {
   );
 }
 
-export function MobileCta() {
+export function MobileCta({ phone = "+7 (000) 000-00-00" }: { phone?: string }) {
+  const tel = `tel:${phone.replace(/[^+\d]/g, "")}`;
   return (
     <div className="mobile-cta">
       <a className="cta cta-primary" href="/#estimate">Расчёт стоимости</a>
-      <a className="cta cta-ghost" href="tel:+78000000000">Позвонить</a>
+      <a className="cta cta-ghost" href={tel}>Позвонить</a>
     </div>
   );
 }

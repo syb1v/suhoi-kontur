@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { HeaderShrink } from "@/components/site/HeaderShrink";
 import { requireAdmin } from "@/lib/auth";
+import { AdminNav } from "./AdminNav";
 import { LogoutButton } from "./LogoutButton";
 
 export const metadata: Metadata = { robots: { index: false, follow: false } };
@@ -27,6 +28,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </div>
         </div>
       </header>
+      <div className="wrap">
+        <AdminNav />
+      </div>
       <div className="wrap section">{children}</div>
     </main>
   );

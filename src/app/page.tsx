@@ -8,20 +8,9 @@ import { CaseFigure } from "@/components/site/CaseFigure";
 import { HeroDiagram } from "@/components/site/HeroDiagram";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { getPublicData } from "@/lib/content";
 
-const services = [
-  { icon: HouseLine, title: "Дренаж фундамента", note: "Пристенный и кольцевой контур вокруг дома" },
-  { icon: Drop, title: "Дренаж участка", note: "Глубинный и поверхностный отвод воды" },
-  { icon: CloudRain, title: "Ливневая канализация", note: "Вода с кровли, отмостки и площадок" },
-  { icon: Waves, title: "Водопонижение", note: "Сложные глинистые и переувлажнённые грунты" },
-  { icon: Funnel, title: "Колодцы и насосные станции", note: "Сбор, фильтрация и принудительный сброс" },
-];
-
-const cases = [
-  { site: "Краснодар · КП «Новая Европа»", title: "Кольцевой дренаж коттеджа", text: "Вода стояла у отмостки после ливней, цоколь постоянно сырел. Смонтирован кольцевой контур с выводом в колодец.", metrics: [["86 м", "погонаж"], ["6 дней", "срок"], ["260 000 ₽", "смета"]] },
-  { site: "Новороссийск · Мысхако", title: "Дренаж участка на уклоне", text: "Сток собирался в нижней точке участка. Организован перехват воды и отвод через поглотительный колодец.", metrics: [["74 м", "погонаж"], ["5 дней", "срок"], ["245 000 ₽", "смета"]] },
-  { site: "Адыгея · Яблоновский", title: "Комплекс: дом и участок", text: "Глинистый грунт, высокий уровень воды. Разделены поверхностный и глубинный контуры, восстановлен газон.", metrics: [["112 м", "погонаж"], ["7 дней", "срок"], ["320 000 ₽", "смета"]] },
-];
+const serviceIcons = [HouseLine, Drop, CloudRain, Waves, Funnel];
 
 const processSteps = [
   ["Заявка", "Описываете проблему — мы задаём уточняющие вопросы"],
@@ -51,7 +40,8 @@ const areas: [string, string][] = [
   ["Темрюк", "/temryuk"],
 ];
 
-export default function Home() {
+export default async function Home() {
+  const { settings, cases, services } = await getPublicData();
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -78,7 +68,7 @@ export default function Home() {
   return (
     <main className="site">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <SiteHeader />
+      <SiteHeader phone={settings.phone} />
 
       <section className="hero">
         <div className="wrap hero-inner">
@@ -144,21 +134,26 @@ export default function Home() {
               <h2 className="h2">Система, а не отдельная труба.</h2>
             </div>
           </Reveal>
+          {services.length > 0 && (
           <div className="services">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 50}>
-                <div className="service-row">
-                  <span className="service-num">0{i + 1}</span>
-                  <span className="service-icon"><s.icon size={26} weight="light" /></span>
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p className="service-note">{s.note}</p>
+            {services.map((s, i) => {
+              const Icon = serviceIcons[i % serviceIcons.length];
+              return (
+                <Reveal key={s.id} delay={i * 50}>
+                  <div className="service-row">
+                    <span className="service-num">0{i + 1}</span>
+                    <span className="service-icon"><Icon size={26} weight="light" /></span>
+                    <div>
+                      <h3>{s.title}</h3>
+                      <p className="service-note">{s.note}</p>
+                    </div>
+                    <span className="service-arrow"><ArrowRight size={20} weight="bold" /></span>
                   </div>
-                  <span className="service-arrow"><ArrowRight size={20} weight="bold" /></span>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
+          )}
         </div>
       </section>
 
@@ -187,6 +182,7 @@ export default function Home() {
         </div>
       </section>
 
+      {cases.length > 0 && (
       <section className="wrap section" id="cases">
         <Reveal>
           <div className="section-head">
@@ -200,20 +196,24 @@ export default function Home() {
         </Reveal>
         <div className="cases">
           {cases.map((c, i) => (
-            <Reveal key={c.title} delay={i * 70}>
+            <Reveal key={c.id} delay={i * 70}>
               <article className="case-card">
                 <div className="case-figure">
                   <span className="case-tag">Демо-данные</span>
-                  <CaseFigure variant={i} />
+                  {c.image ? (
+                    <img className="case-photo" src={c.image} alt={c.title} loading="lazy" />
+                  ) : (
+                    <CaseFigure variant={i} />
+                  )}
                 </div>
                 <div className="case-body">
                   <span className="case-site">{c.site}</span>
                   <h3>{c.title}</h3>
-                  <p>{c.text}</p>
+                  <p>{c.body}</p>
                   <div className="case-metrics">
-                    {c.metrics.map(([value, label]) => (
-                      <div key={label}><b>{value}</b><small>{label}</small></div>
-                    ))}
+                    <div><b>{c.length}</b><small>погонаж</small></div>
+                    <div><b>{c.days}</b><small>срок</small></div>
+                    <div><b>{c.price}</b><small>смета</small></div>
                   </div>
                 </div>
               </article>
@@ -221,6 +221,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      )}
 
       <section className="section section-dark" id="technology">
         <div className="wrap">
@@ -382,8 +383,8 @@ export default function Home() {
         </div>
       </section>
 
-      <SiteFooter />
-      <MobileCta />
+      <SiteFooter phone={settings.phone} email={settings.email} />
+      <MobileCta phone={settings.phone} />
     </main>
   );
 }

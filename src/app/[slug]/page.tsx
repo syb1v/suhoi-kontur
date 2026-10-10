@@ -4,6 +4,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { HeroDiagram } from "@/components/site/HeroDiagram";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { getSettings } from "@/lib/content";
 
 const pages: Record<string, { title: string; description: string; intro: string; type: "service" | "region" }> = {
   "drenazh-uchastka": { title: "Дренаж участка в Краснодарском крае", description: "Глубинный и поверхностный дренаж участка: проектирование, монтаж и отвод воды по договору с гарантией 3 года.", intro: "Подбираем систему по рельефу, грунту, источнику воды и точке сброса. Онлайн-расчёт показывает ориентир, окончательная схема формируется после осмотра участка.", type: "service" },
@@ -40,6 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function SeoPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const settings = await getSettings();
   const p = pages[slug] ?? pages["drenazh-uchastka"];
   const schema = {
     "@context": "https://schema.org",
@@ -53,7 +55,7 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
   return (
     <main className="site">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <SiteHeader />
+      <SiteHeader phone={settings.phone} />
       <section className="hero">
         <div className="wrap hero-inner seo-hero">
           <div>
@@ -115,8 +117,8 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
         </div>
       </section>
 
-      <SiteFooter />
-      <MobileCta />
+      <SiteFooter phone={settings.phone} email={settings.email} />
+      <MobileCta phone={settings.phone} />
     </main>
   );
 }

@@ -1,7 +1,8 @@
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { HeaderShrink } from "./HeaderShrink";
 
-export function SiteHeader() {
+export function SiteHeader({ phone = "+7 (000) 000-00-00" }: { phone?: string }) {
+  const tel = `tel:${phone.replace(/[^+\d]/g, "")}`;
   return (
     <header className="topbar">
       <HeaderShrink />
@@ -18,7 +19,7 @@ export function SiteHeader() {
           <a href="/#faq">Вопросы</a>
         </nav>
         <div className="top-actions">
-          <a className="phone" href="tel:+78000000000">+7 (000) 000-00-00</a>
+          <a className="phone" href={tel}>{phone}</a>
           <a className="cta cta-primary" href="/#estimate">
             Вызвать инженера
             <ArrowRight size={15} weight="bold" />

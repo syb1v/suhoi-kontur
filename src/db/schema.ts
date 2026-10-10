@@ -24,3 +24,29 @@ export const analyticsEvents = sqliteTable("analytics_events", {
   metadata: text("metadata"),
   createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
+
+export const siteSettings = sqliteTable("site_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+});
+
+export const cases = sqliteTable("cases", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  site: text("site").notNull(),
+  title: text("title").notNull(),
+  body: text("body").notNull(),
+  length: text("length").notNull(),
+  days: text("days").notNull(),
+  price: text("price").notNull(),
+  image: text("image"),
+  visible: integer("visible", { mode: "boolean" }).notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+});
+
+export const services = sqliteTable("services", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  note: text("note").notNull(),
+  visible: integer("visible", { mode: "boolean" }).notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+});
