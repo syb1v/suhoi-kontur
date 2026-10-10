@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Chip, Leader } from "@/components/diagrams/drafting";
 
 const problems = [
   {
@@ -28,82 +29,97 @@ const problems = [
   },
 ];
 
-function PuddleScene() {
+function ScenePuddle() {
   return (
-    <svg className="pf-svg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
-      <rect x="16" y="20" width="228" height="160" className="pf-plot" />
-      <path className="pf-ink-soft" d="M16 96 C 60 84, 110 108, 164 96 S 224 84, 244 92" />
-      <path className="pf-water-soft" d="M62 118 C 82 100, 138 98, 162 114 C 186 130, 158 152, 118 152 C 84 152, 44 138, 62 118 Z" />
-      <ellipse cx="118" cy="126" rx="34" ry="12" className="pf-ink-soft" />
-      <ellipse cx="118" cy="126" rx="16" ry="6" className="pf-ink-soft" />
-      <line x1="196" y1="58" x2="196" y2="86" className="pf-ink" />
-      <path d="M196 62 L192 70 M196 62 L200 70" className="pf-ink" />
-      <line x1="184" y1="72" x2="208" y2="72" className="pf-ink" />
-      <text className="pf-label" x="182" y="52">НЕТ СБРОСА</text>
-      <text className="pf-label" x="42" y="168">ЗАСТОЙ ПОСЛЕ ДОЖДЯ</text>
+    <svg className="dg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
+      <defs>
+        <marker id="pf-arrow-1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path className="dg-accent-fill" d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+      </defs>
+      <rect className="dg-plot" x="20" y="26" width="220" height="130" />
+      <ellipse className="dg-water-soft" cx="118" cy="98" rx="46" ry="27" />
+      <ellipse className="dg-water-line" cx="118" cy="98" rx="30" ry="17" />
+      <ellipse className="dg-water-line" cx="118" cy="98" rx="14" ry="7" />
+      <line className="dg-accent-line" x1="168" y1="98" x2="216" y2="98" markerEnd="url(#pf-arrow-1)" />
+      <line className="dg-ink" x1="182" y1="88" x2="198" y2="108" />
+      <line className="dg-ink" x1="182" y1="108" x2="198" y2="88" />
+      <Chip x={168} y={48} text="НЕТ СБРОСА" />
+      <Chip x={34} y={170} text="ЗАСТОЙ ПОСЛЕ ДОЖДЯ" />
     </svg>
   );
 }
 
-function FoundationScene() {
+function SceneFoundation() {
   return (
-    <svg className="pf-svg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
-      <path className="pf-ink-soft" d="M16 78 L 104 78 L 104 168 L 16 168" />
-      <path className="pf-ink" d="M104 60 L 104 168 L 130 168 L 130 60 Z" />
-      <rect x="94" y="60" width="52" height="18" className="pf-ink-soft" />
-      <line x1="16" y1="60" x2="94" y2="60" className="pf-ink" />
-      <line x1="150" y1="60" x2="244" y2="60" className="pf-ink" />
-      <rect x="150" y="88" width="94" height="80" className="pf-water-soft" />
-      <line x1="150" y1="88" x2="244" y2="88" className="pf-ink" strokeDasharray="6 4" />
-      <path d="M186 112 L 166 112 M186 112 L 179 108 M186 112 L 179 116" className="pf-water-line" />
-      <path d="M186 136 L 160 136 M186 136 L 173 132 M186 136 L 173 140" className="pf-water-line" />
-      <path d="M186 158 L 164 158 M186 158 L 177 154 M186 158 L 177 162" className="pf-water-line" />
-      <text className="pf-label" x="148" y="80">ДАВЛЕНИЕ ВОДЫ</text>
-      <text className="pf-label" x="30" y="94">ЦОКОЛЬ</text>
+    <svg className="dg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
+      <defs>
+        <marker id="pf-arrow-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path className="dg-accent-fill" d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+        <pattern id="pf-hatch-2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line className="dg-hatch" x1="0" y1="0" x2="0" y2="8" />
+        </pattern>
+      </defs>
+      <line className="dg-ink" x1="20" y1="90" x2="240" y2="90" />
+      <rect className="dg-soft" x="58" y="62" width="38" height="68" fill="url(#pf-hatch-2)" />
+      <rect className="dg-ink" x="96" y="34" width="22" height="96" />
+      <rect className="dg-ink" x="76" y="130" width="62" height="14" />
+      <rect className="dg-water-soft" x="118" y="110" width="102" height="34" />
+      <line className="dg-water-line" x1="118" y1="110" x2="220" y2="110" strokeDasharray="6 4" />
+      <line className="dg-accent-line" x1="206" y1="118" x2="150" y2="118" markerEnd="url(#pf-arrow-2)" />
+      <line className="dg-accent-line" x1="206" y1="128" x2="150" y2="128" markerEnd="url(#pf-arrow-2)" />
+      <line className="dg-accent-line" x1="206" y1="138" x2="150" y2="138" markerEnd="url(#pf-arrow-2)" />
+      <Chip x={34} y={44} text="ЦОКОЛЬ" />
+      <Leader x1={93} y1={53} x2={84} y2={72} />
+      <Chip x={122} y={168} text="ДАВЛЕНИЕ ВОДЫ" />
     </svg>
   );
 }
 
-function BasementScene() {
+function SceneBasement() {
   return (
-    <svg className="pf-svg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
-      <path className="pf-ink" d="M48 34 L 48 156 L 212 156 L 212 34" />
-      <line x1="36" y1="34" x2="224" y2="34" className="pf-ink" />
-      <line x1="48" y1="92" x2="212" y2="92" className="pf-ink" />
-      <line x1="48" y1="118" x2="212" y2="118" className="pf-ink-soft" />
-      <rect x="52" y="126" width="156" height="30" className="pf-water-soft" />
-      <line x1="52" y1="126" x2="208" y2="126" className="pf-water-line" />
-      <line x1="212" y1="86" x2="244" y2="86" className="pf-ink" strokeDasharray="6 4" />
-      <text className="pf-label" x="216" y="80">УГВ</text>
-      <text className="pf-label" x="60" y="146">ПОДВАЛ В ВОДЕ</text>
-      <line x1="130" y1="92" x2="130" y2="118" className="pf-ink" />
-      <path d="M130 118 L126 110 M130 118 L134 110" className="pf-ink" />
+    <svg className="dg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
+      <defs>
+        <marker id="pf-arrow-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path className="dg-accent-fill" d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+      </defs>
+      <path className="dg-ink" d="M 50 28 L 50 164 L 210 164 L 210 28" />
+      <line className="dg-ink" x1="42" y1="28" x2="218" y2="28" />
+      <line className="dg-ink" x1="50" y1="100" x2="210" y2="100" />
+      <line className="dg-soft" x1="50" y1="108" x2="210" y2="108" />
+      <rect className="dg-water-soft" x="56" y="114" width="148" height="44" />
+      <line className="dg-water-line" x1="56" y1="114" x2="204" y2="114" strokeDasharray="6 4" />
+      <line className="dg-dashed" x1="210" y1="92" x2="244" y2="92" />
+      <line className="dg-accent-line" x1="130" y1="152" x2="130" y2="122" markerEnd="url(#pf-arrow-3)" />
+      <text className="dg-label" x="150" y="94">УГВ</text>
+      <text className="dg-label" x="150" y="82">ОТМ. 0,00</text>
+      <Chip x={64} y={132} text="ПОДВАЛ В ВОДЕ" />
     </svg>
   );
 }
 
-function LawnScene() {
-  const blades = [40, 56, 72, 88, 104, 120, 136, 152, 168, 184, 200, 216];
+const bladeX = Array.from({ length: 12 }, (_, i) => 36 + i * 17);
+
+function SceneLawn() {
   return (
-    <svg className="pf-svg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
-      <line x1="24" y1="96" x2="236" y2="96" className="pf-ink" />
-      <rect x="24" y="118" width="212" height="52" className="pf-water-soft" />
-      <line x1="24" y1="118" x2="236" y2="118" className="pf-water-line" strokeDasharray="6 4" />
-      <path d="M24 150 C 90 142, 170 158, 236 148" className="pf-ink-soft" />
-      {blades.map((x, i) => (
-        <path
-          key={x}
-          d={`M ${x} 96 C ${x - 2} 82, ${x + 3} 74, ${x + 1} 66`}
-          className={i === 4 || i === 9 ? "pf-wilt" : "pf-ink"}
-        />
+    <svg className="dg" viewBox="0 0 260 200" fill="none" aria-hidden="true">
+      <line className="dg-ink" x1="20" y1="88" x2="240" y2="88" />
+      {bladeX.map((x, i) => (
+        <path key={x} className={i === 3 || i === 8 ? "dg-wilt" : "dg-ink"} d={`M ${x} 88 C ${x - 3} 74, ${x + 3} 64, ${x} 54`} />
       ))}
-      <text className="pf-label" x="30" y="188">КОРНИ БЕЗ ВОЗДУХА</text>
-      <text className="pf-label" x="170" y="88">ГАЗОН ГИБНЕТ</text>
+      <rect className="dg-water-soft" x="28" y="104" width="204" height="44" />
+      <line className="dg-water-line" x1="28" y1="104" x2="232" y2="104" strokeDasharray="6 4" />
+      <line className="dg-soft" x1="28" y1="148" x2="232" y2="148" />
+      <line className="dg-water-line" x1="28" y1="126" x2="232" y2="126" strokeDasharray="4 6" />
+      <Chip x={36} y={160} text="КОРНИ БЕЗ ВОЗДУХА" />
+      <Chip x={244} y={40} text="ГАЗОН ГИБНЕТ" anchor="end" />
     </svg>
   );
 }
 
-const scenes = [PuddleScene, FoundationScene, BasementScene, LawnScene];
+const scenes = [ScenePuddle, SceneFoundation, SceneBasement, SceneLawn];
 
 export function ProblemExplorer() {
   const [active, setActive] = useState(0);

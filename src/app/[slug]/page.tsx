@@ -5,6 +5,7 @@ import { HeroDiagram } from "@/components/site/HeroDiagram";
 import { ProcessRail } from "@/components/site/ProcessRail";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { SectionEdge } from "@/components/site/Edges";
 import { getSettings } from "@/lib/content";
 
 const pages: Record<string, { title: string; description: string; intro: string; type: "service" | "region" }> = {
@@ -76,6 +77,7 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
       </section>
 
       <section className="stats">
+        <SectionEdge pos="bottom" tone="dark" />
         <div className="wrap stats-grid">
           <p className="stats-note">Официальная работа.<br />Смета фиксируется в договоре.</p>
           <div className="stat"><b>10+ <em>лет</em></b><small>в гидротехнике</small></div>
@@ -98,9 +100,8 @@ export default async function SeoPage({ params }: { params: Promise<{ slug: stri
         </Reveal>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--ink))" }} />
-
       <section className="final-cta">
+        <SectionEdge pos="top" tone="dark" />
         <div className="wrap">
           <div>
             <span className="kicker">Первый шаг — бесплатный</span>

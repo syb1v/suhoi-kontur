@@ -9,6 +9,7 @@ import { HeroDiagram } from "@/components/site/HeroDiagram";
 import { ProcessRail } from "@/components/site/ProcessRail";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { SectionEdge, SheetFrame } from "@/components/site/Edges";
 import { getPublicData } from "@/lib/content";
 import { publicImage, readPublicText } from "@/lib/visuals";
 
@@ -134,6 +135,7 @@ export default async function Home() {
       </section>
 
       <section className="stats">
+        <SectionEdge pos="bottom" tone="dark" />
         <div className="wrap stats-grid">
           <p className="stats-note">
             Работаем официально.<br />Состав работ и цена фиксируются в договоре.
@@ -144,8 +146,6 @@ export default async function Home() {
           <div className="stat"><b>200 000 <em>₽</em></b><small>минимальный объект</small></div>
         </div>
       </section>
-
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink-2), var(--paper) 62%)" }} />
 
       <section className="wrap section">
         <Reveal>
@@ -163,9 +163,7 @@ export default async function Home() {
         </Reveal>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--ink) 62%)" }} />
-
-      <section className="section section-dark" id="services">
+      <section className="section section-sep" id="services">
         <div className="wrap">
           <Reveal>
             <div className="section-head">
@@ -196,9 +194,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink), var(--paper-2) 62%)" }} />
-
-      <section className="section section-mist" id="estimate">
+      <section className="section section-sep" id="estimate">
         <div className="wrap">
           <Reveal>
             <div className="quiz-frame">
@@ -223,10 +219,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper-2), var(--paper) 62%)" }} />
-
       {cases.length > 0 && (
-      <section className="wrap section" id="cases">
+      <section className="wrap section section-sep" id="cases">
         <Reveal>
           <div className="section-head">
             <span className="kicker">Объекты и решения</span>
@@ -264,9 +258,10 @@ export default async function Home() {
       </section>
       )}
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--ink) 62%)" }} />
-
       <section className="section section-dark" id="technology">
+        <SectionEdge pos="top" tone="dark" />
+        <SectionEdge pos="bottom" tone="dark" />
+        <SheetFrame />
         <div className="wrap">
           <Reveal>
             <div className="section-head">
@@ -285,7 +280,7 @@ export default async function Home() {
       </section>
 
       {workPhotos.length > 0 && (
-        <section className="wrap section" id="work">
+        <section className="wrap section section-sep" id="work">
           <Reveal>
             <div className="section-head">
               <span className="kicker">Процесс в деталях</span>
@@ -315,9 +310,7 @@ export default async function Home() {
         </section>
       )}
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink), var(--paper-2) 62%)" }} />
-
-      <section className="section section-mist" id="process">
+      <section className="section" id="process">
         <div className="wrap">
           <Reveal>
             <div className="section-head">
@@ -331,9 +324,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper-2), var(--ink) 62%)" }} />
-
-      <section className="section section-dark">
+      <section className="section section-sep">
         <div className="wrap">
           <Reveal>
             <div className="section-head">
@@ -355,8 +346,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--ink), var(--cyan) 62%)" }} />
 
       <section className="section section-cyan">
         <div className="wrap b2b">
@@ -389,9 +378,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--cyan), var(--paper) 62%)" }} />
-
-      <section className="wrap section" id="faq">
+      <section className="wrap section section-sep" id="faq">
         <div className="faq-layout">
           <Reveal>
             <div className="section-head" style={{ marginBottom: 0 }}>
@@ -406,9 +393,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper), var(--paper-2) 62%)" }} />
-
-      <section className="section section-mist">
+      <section className="section section-sep">
         <div className="wrap geo">
           <Reveal>
             <div className="section-head" style={{ marginBottom: 0 }}>
@@ -440,9 +425,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="fade-band" style={{ background: "linear-gradient(180deg, var(--paper-2), var(--ink) 62%)" }} />
-
       <section className="final-cta">
+        <SectionEdge pos="top" tone="dark" />
         <div className="wrap">
           <div>
             <span className="kicker">Первый шаг — бесплатный</span>
