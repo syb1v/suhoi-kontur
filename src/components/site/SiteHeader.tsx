@@ -1,8 +1,10 @@
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { HeaderShrink } from "./HeaderShrink";
 
 export function SiteHeader() {
   return (
     <header className="topbar">
+      <HeaderShrink />
       <div className="wrap topbar-inner">
         <a className="brand" href="/">
           <span className="brand-mark"><span>СК</span></span>

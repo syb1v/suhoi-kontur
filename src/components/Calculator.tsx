@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { calculateEstimate, type Drainage } from "@/lib/calculator";
+import { track } from "@/lib/track";
 
 const rub = (n: number) => new Intl.NumberFormat("ru-RU").format(n) + " ₽";
 const steps = ["Объект", "Размер", "Сброс", "Контакты"];
@@ -19,7 +20,13 @@ export function Calculator() {
   const [error, setError] = useState("");
   const estimate = calculateEstimate(length, drainage);
 
-  const next = () => { setError(""); if (step < 3) setStep(step + 1); };
+  const next = () => {
+    setError("");
+    if (step < 3) {
+      track("quiz_step", { step: step + 2 });
+      setStep(step + 1);
+    }
+  };
   const back = () => { setError(""); setStep(Math.max(0, step - 1)); };
 
   const submit = async (e: React.FormEvent) => {
@@ -36,6 +43,7 @@ export function Calculator() {
         setError(data.error ?? "Проверьте данные и попробуйте ещё раз");
         return;
       }
+      track("quiz_submit", { objectType, location, length, drainage });
       setSent(true);
     } catch {
       setError("Нет связи с сервером. Попробуйте ещё раз или позвоните.");

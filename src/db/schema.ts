@@ -13,6 +13,7 @@ export const leads = sqliteTable("leads", {
   estimateMin: integer("estimate_min").notNull(),
   estimateMax: integer("estimate_max").notNull(),
   status: text("status").notNull().default("new"),
+  managerNote: text("manager_note"),
   createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
 

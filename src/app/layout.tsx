@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { Tracker } from "@/components/site/Tracker";
 import "./globals.css";
 
 const manrope = Manrope({ subsets: ["cyrillic", "latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-sans", display: "swap" });
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ru" className={`${manrope.variable} ${mono.variable}`}>
       <body>
         <Script id="organization-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Tracker />
         {children}
       </body>
     </html>
