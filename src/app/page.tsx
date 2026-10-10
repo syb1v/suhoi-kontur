@@ -9,6 +9,7 @@ import { HeroDiagram } from "@/components/site/HeroDiagram";
 import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { getPublicData } from "@/lib/content";
+import { publicImage, readPublicText } from "@/lib/visuals";
 
 const serviceIcons = [HouseLine, Drop, CloudRain, Waves, Funnel];
 
@@ -42,6 +43,31 @@ const areas: [string, string][] = [
 
 export default async function Home() {
   const { settings, cases, services } = await getPublicData();
+  const heroImage = publicImage("/images/hero.jpg");
+  const heroCredit = heroImage ? readPublicText("/images/hero.credit") : null;
+  const workPhotos = [
+    {
+      src: publicImage("/images/work/work-1.jpg"),
+      title: "Разработка траншеи",
+      text: "Выемка грунта на проектную глубину с контролем уклона под будущую трассу.",
+      credit: "Bugsybanana / CC BY-SA 4.0",
+      position: "50% 72%",
+    },
+    {
+      src: publicImage("/images/work/work-2.jpg"),
+      title: "Укладка трубы и колодца",
+      text: "Перфорированная труба в дренажной обсыпке, вывод в смотровой колодец.",
+      credit: "Bugsybanana / CC BY-SA 4.0",
+      position: "50% 78%",
+    },
+    {
+      src: publicImage("/images/work/work-3.jpg"),
+      title: "Проверка проливом",
+      text: "Контрольный пролив системы и проверка уклонов перед сдачей объекта.",
+      credit: "Фото объекта",
+      position: "50% 50%",
+    },
+  ].filter((photo) => Boolean(photo.src));
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -71,6 +97,11 @@ export default async function Home() {
       <SiteHeader phone={settings.phone} />
 
       <section className="hero">
+        {heroImage ? (
+          <div className="hero-bg" aria-hidden="true">
+            <img src={heroImage} alt="" />
+          </div>
+        ) : null}
         <div className="wrap hero-inner">
           <div>
             <span className="kicker">Инженерная гидрология · Краснодар и Адыгея</span>
@@ -96,6 +127,7 @@ export default async function Home() {
           </div>
           <HeroDiagram />
         </div>
+        {heroCredit ? <span className="hero-credit">{heroCredit}</span> : null}
       </section>
 
       <section className="stats">
@@ -240,6 +272,37 @@ export default async function Home() {
           </Reveal>
         </div>
       </section>
+
+      {workPhotos.length > 0 && (
+        <section className="wrap section" id="work">
+          <Reveal>
+            <div className="section-head">
+              <span className="kicker">Процесс в деталях</span>
+              <h2 className="h2">Как система выглядит на объекте.</h2>
+              <p className="lead">
+                Под землёй всё должно быть сделано точно: проектная глубина, уклон,
+                обсыпка и колодец. Показываем этапы, которые определяют результат.
+              </p>
+            </div>
+          </Reveal>
+          <div className="work-strip">
+            {workPhotos.map((photo, i) => (
+              <Reveal key={photo.src} delay={i * 70}>
+                <article className="work-card">
+                  <div className="work-photo">
+                    <img src={photo.src as string} alt={photo.title} loading="lazy" style={{ objectPosition: photo.position }} />
+                  </div>
+                  <div className="work-caption">
+                    <strong>{photo.title}</strong>
+                    <p>{photo.text}</p>
+                    <span className="work-credit">Фото: {photo.credit}</span>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="section section-mist" id="process">
         <div className="wrap">
