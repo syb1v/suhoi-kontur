@@ -1,23 +1,389 @@
+import { ArrowRight, Check, CloudRain, CurrencyRub, Drop, FileText, Funnel, HouseLine, ShieldCheck, Waves } from "@phosphor-icons/react/dist/ssr";
 import { Calculator } from "@/components/Calculator";
-import { ProblemExplorer } from "@/components/ProblemExplorer";
-import { SectionDiagram } from "@/components/SectionDiagram";
 import { Faq } from "@/components/Faq";
+import { ProblemExplorer } from "@/components/ProblemExplorer";
+import { CutawayDiagram } from "@/components/SectionDiagram";
+import { Reveal } from "@/components/site/Reveal";
+import { CaseFigure } from "@/components/site/CaseFigure";
+import { HeroDiagram } from "@/components/site/HeroDiagram";
+import { MobileCta, SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 
-const services=["Пристенный и кольцевой дренаж фундамента","Глубинный дренаж участка и понижение УГВ","Ливневая канализация с кровли и площадок","Водопонижение сложных глинистых грунтов","Дренажные колодцы и насосные станции"];
-const cases=["Краснодар · КП «Новая Европа»","Новороссийск · Мысхако","Адыгея · Яблоновский"];
-const serviceAreas=["Краснодар","Яблоновский","Энем","Тахтамукай","Майкоп","Новороссийск","Геленджик","Анапа","Крымск","Темрюк"];
+const services = [
+  { icon: HouseLine, title: "Дренаж фундамента", note: "Пристенный и кольцевой контур вокруг дома" },
+  { icon: Drop, title: "Дренаж участка", note: "Глубинный и поверхностный отвод воды" },
+  { icon: CloudRain, title: "Ливневая канализация", note: "Вода с кровли, отмостки и площадок" },
+  { icon: Waves, title: "Водопонижение", note: "Сложные глинистые и переувлажнённые грунты" },
+  { icon: Funnel, title: "Колодцы и насосные станции", note: "Сбор, фильтрация и принудительный сброс" },
+];
 
-export default function Home(){const faqSchema={"@context":"https://schema.org","@type":"FAQPage","mainEntity":["Почему вода стоит после дождя?","Чем поверхностный дренаж отличается от глубинного?","Куда можно отвести воду?"].map(name=>({"@type":"Question",name,acceptedAnswer:{"@type":"Answer",text:"Ответ зависит от рельефа, грунта, источника воды и доступной точки сброса. Инженер определяет параметры на обследовании участка."}}))};return <main className="site"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/><header className="wrap topbar"><a className="brand" href="#top"><span className="brand-mark"><span>СК</span></span>СУХОЙ КОНТУР</a><nav className="nav"><a href="#services">Услуги</a><a href="#estimate">Расчёт</a><a href="#cases">Объекты</a><a href="#process">Как работаем</a></nav><div className="top-actions"><a className="phone" href="tel:+78000000000">+7 (000) 000-00-00</a><a className="cta cta-dark" href="#estimate">Вызвать инженера</a></div></header>
-<section id="top" className="wrap hero"><div><div className="kicker">Инженерная гидрология · ЮФО</div><h1>Вода должна уходить <em>по проекту.</em></h1><p className="hero-copy">Проектируем и монтируем системы дренажа, ливневого отвода и водопонижения для домов и участков.</p><div className="hero-actions"><a className="cta cta-primary" href="#estimate">Выезд инженера-замерщика бесплатно <span>↗</span></a><a className="cta cta-ghost" href="#services">Смотреть решения</a></div><div className="trust-row"><div><strong>10+</strong><span>лет в гидротехнике</span></div><div><strong>500+</strong><span>сданных объектов</span></div><div><strong>3 года</strong><span>гарантия по договору</span></div></div></div><div className="hero-diagram" aria-label="Инженерная схема отвода воды"><div className="plot-house"/><div className="plot-line"/><span className="plot-label label-a">УЧАСТОК / 01</span><span className="plot-label label-b">ТОЧКА СБРОСА →</span><span className="plot-label label-c">ДРЕНАЖНАЯ ТРАССА</span><div className="diagram-side">периметр дома<br/>уклон 0.5%<br/>коллектор</div></div></section>
-<section className="stats"><div className="wrap stats-grid"><div className="stats-intro">Работаем официально.<br/>Фиксируем состав работ и цену в договоре.</div><div><b>от 200 000 ₽</b><small>минимальный объект</small></div><div><b>от 3 500 ₽/м</b><small>базовая ставка</small></div><div><b>3–7 дней</b><small>срок монтажа</small></div></div></section>
-<section className="wrap section"><div className="section-heading"><div className="kicker">Когда нужен инженер</div><h2>Участок уже подаёт сигналы.</h2><p>Внешние признаки редко исчезают сами. Мы находим источник проблемы и собираем воду в управляемую систему.</p></div><div className="problem-grid"><article className="problem"><strong>Вода стоит после дождя дольше суток</strong><small>Грунт не принимает объём осадков. Нужен организованный отвод.</small></article><article className="problem"><strong>Сырость в подвале или цоколе</strong><small>Вода давит на фундамент и ищет слабые места в гидроизоляции.</small></article><article className="problem"><strong>Проседает отмостка, гибнет газон</strong><small>Нарушен баланс грунтовых и поверхностных вод.</small></article></div></section>
-<section className="section section-light"><div className="wrap"><div className="section-heading"><div className="kicker">Диагностика</div><h2>Сначала понимаем, что происходит с водой.</h2><p>Выберите симптом — увидите инженерную гипотезу, а не обещание универсального решения.</p></div><ProblemExplorer/></div></section>
-<section id="services" className="section section-dark"><div className="wrap service-layout"><div className="section-heading"><div className="kicker">Что мы делаем</div><h2>Система, а не отдельная труба.</h2><p>Связываем рельеф, грунт, фундамент и точку сброса в одну инженерную схему.</p></div><div className="service-list">{services.map((x,i)=><div className="service" key={x}><i>0{i+1}</i><h3>{x}</h3><span className="service-arrow">→</span></div>)}</div></div></section>
-<section id="estimate" className="section section-muted"><div className="wrap quiz-frame"><div className="quiz-intro"><div className="kicker">Калькулятор проекта</div><h2>Получите ориентир за минуту.</h2><p>Выберите параметры участка. Предварительная схема и расчёт стоимости составляются удалённо бесплатно.</p></div><Calculator/></div></section>
-<section id="cases" className="wrap section"><div className="section-heading"><div className="kicker">Демонстрационные объекты</div><h2>Инженерный результат виден после первого дождя.</h2></div><div className="cases-grid">{cases.map((x,i)=><article className="case" key={x}><div className="case-image"/><div className="case-body"><small>{x}</small><h3>{i===0?"Кольцевой дренаж коттеджа":"Комплексный дренаж участка"}</h3><p>Демонстрационные данные. Реальные фото, погонаж и смета будут добавлены через админку.</p></div></article>)}</div></section>
-<section className="section section-dark"><div className="wrap"><div className="section-heading"><div className="kicker">Разрез системы</div><h2>Каждый слой работает на сухой результат.</h2><p>Показываем, что находится под землёй и зачем нужен каждый элемент контура.</p></div><SectionDiagram/></div></section>
-<section id="process" className="section section-muted"><div className="wrap process"><div className="section-heading"><div className="kicker">Регламент работ</div><h2>Прозрачно от замера до сдачи.</h2></div><div className="process-list">{["Предварительный расчёт и схема бесплатно","Выезд инженера-замерщика на объект","Проектно-сметная спецификация","Официальный договор с фиксацией цены","Монтаж за 3–7 дней","Испытания и гарантия 3 года"].map((x,i)=><div className="step" key={x}><span className="step-num">0{i+1}</span><strong>{x}</strong></div>)}</div></div></section>
-<section className="wrap section geography"><div className="section-heading"><div className="kicker">География работ</div><h2>Работаем там, где можем отвечать за результат.</h2><p>Основной маршрут бригады — Краснодар, Адыгея и западная часть края. Сочи, Адлер, Красная Поляна и территории южнее Туапсе не принимаем.</p></div><div className="area-list">{serviceAreas.map((x,i)=><a href={`/krasnodar`} key={x}><span>0{i+1}</span>{x}<b>↗</b></a>)}</div></section>
-<section className="section section-light"><div className="wrap faq-layout"><div className="section-heading"><div className="kicker">Ответы инженера</div><h2>Что важно знать до начала работ.</h2><p>Короткие ответы на вопросы, которые влияют на схему и бюджет водоотведения.</p></div><Faq/></div></section>
-<section className="wrap section"><div className="partner"><div className="section-heading"><div className="kicker">Для партнёров</div><h2>Дренаж до чистового благоустройства.</h2><p>Работаем субподрядчиком для ландшафтных дизайнеров, архитекторов и прорабов. Сохраняем ваши сроки и не перехватываем клиентов.</p></div><div className="partner-box"><div className="kicker">Закрытые условия</div><h2>Обсудить партнёрство</h2><p>Агентское вознаграждение, один ответственный подрядчик, понятный результат.</p><a className="cta cta-dark" href="mailto:partners@suhoi-kontur.ru">Обсудить условия ↗</a></div></div></section>
-<footer className="footer"><div className="wrap footer-inner"><span>© 2026 «Сухой Контур»</span><span>Краснодарский край · Адыгея · от Туапсе до Крымского моста</span><a href="/admin">Вход для администратора</a></div></footer></main>}
+const cases = [
+  { site: "Краснодар · КП «Новая Европа»", title: "Кольцевой дренаж коттеджа", text: "Вода стояла у отмостки после ливней, цоколь постоянно сырел. Смонтирован кольцевой контур с выводом в колодец.", metrics: [["86 м", "погонаж"], ["6 дней", "срок"], ["260 000 ₽", "смета"]] },
+  { site: "Новороссийск · Мысхако", title: "Дренаж участка на уклоне", text: "Сток собирался в нижней точке участка. Организован перехват воды и отвод через поглотительный колодец.", metrics: [["74 м", "погонаж"], ["5 дней", "срок"], ["245 000 ₽", "смета"]] },
+  { site: "Адыгея · Яблоновский", title: "Комплекс: дом и участок", text: "Глинистый грунт, высокий уровень воды. Разделены поверхностный и глубинный контуры, восстановлен газон.", metrics: [["112 м", "погонаж"], ["7 дней", "срок"], ["320 000 ₽", "смета"]] },
+];
+
+const processSteps = [
+  ["Заявка", "Описываете проблему — мы задаём уточняющие вопросы"],
+  ["Предварительная схема", "Считаем ориентир и показываем логику системы"],
+  ["Выезд инженера", "Замер, рельеф, грунт, точка сброса — 0 ₽"],
+  ["Смета и договор", "Фиксируем состав работ и цену в договоре"],
+  ["Монтаж", "Работы за 3–7 дней и восстановление поверхности"],
+  ["Сдача", "Пролив, проверка уклонов, гарантия 3 года"],
+];
+
+const guarantees = [
+  { icon: FileText, value: "Договор", label: "Официально с ООО", text: "Работаем по договору с юридическим лицом: состав работ, сроки и ответственность зафиксированы документально." },
+  { icon: CurrencyRub, value: "0 ₽", label: "Фиксация сметы", text: "Стоимость в договоре не растёт в процессе работ. Дополнительные объёмы — только с вашего согласия." },
+  { icon: ShieldCheck, value: "3 года", label: "Гарантия на систему", text: "Если система не справляется — приезжаем, находим причину и устраняем её по гарантии." },
+];
+
+const areas: [string, string][] = [
+  ["Краснодар", "/krasnodar"],
+  ["Яблоновский", "/adygeya"],
+  ["Энем", "/adygeya"],
+  ["Тахтамукай", "/adygeya"],
+  ["Майкоп", "/adygeya"],
+  ["Новороссийск", "/novorossiysk"],
+  ["Геленджик", "/gelendzhik"],
+  ["Анапа", "/anapa"],
+  ["Крымск", "/krymsk"],
+  ["Темрюк", "/temryuk"],
+];
+
+export default function Home() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      "Почему вода стоит после дождя?",
+      "Чем поверхностный дренаж отличается от глубинного?",
+      "Куда можно отвести воду?",
+      "Сколько времени занимает монтаж?",
+    ].map((name, i) => ({
+      "@type": "Question",
+      name,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: [
+          "Причина обычно в сочетании глинистого грунта, понижения рельефа и отсутствия организованного водоотвода. Инженер определяет источник воды и проектное решение на осмотре участка.",
+          "Поверхностный контур собирает дождевую и талую воду, глубинный работает с водой в грунте и защищает фундамент. На сложных участках применяют оба контура.",
+          "Вода отводится в придорожную канаву, действующую ливневую сеть, поглотительный колодец или герметичный колодец с насосом. Точка сброса определяется на замере.",
+          "Типовой монтаж занимает 3–7 рабочих дней. Точный срок зависит от длины трассы, грунта и объёма земляных работ, он фиксируется в договоре.",
+        ][i],
+      },
+    })),
+  };
+
+  return (
+    <main className="site">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <SiteHeader />
+
+      <section className="hero">
+        <div className="wrap hero-inner">
+          <div>
+            <span className="kicker">Инженерная гидрология · Краснодар и Адыгея</span>
+            <h1 className="h-display">
+              Вода должна уходить <em>по проекту.</em>
+            </h1>
+            <p className="lead lead-dark">
+              Проектируем и монтируем системы дренажа, ливневого отвода и водопонижения.
+              Защищаем фундаменты, подвалы и участки — с договором и гарантией 3 года.
+            </p>
+            <div className="hero-actions">
+              <a className="cta cta-primary" href="#estimate">
+                Выезд инженера-замерщика бесплатно
+                <ArrowRight size={15} weight="bold" />
+              </a>
+              <a className="cta cta-ghost" href="#estimate">Рассчитать смету за 1 минуту</a>
+            </div>
+            <div className="hero-chips">
+              <span className="chip"><span className="chip-dot" /><b>10+ лет</b> в гидротехнике</span>
+              <span className="chip"><span className="chip-dot" /><b>500+</b> объектов в ЮФО</span>
+              <span className="chip"><span className="chip-dot" />проекты <b>от 200 000 ₽</b></span>
+            </div>
+          </div>
+          <HeroDiagram />
+        </div>
+      </section>
+
+      <section className="stats">
+        <div className="wrap stats-grid">
+          <p className="stats-note">
+            Работаем официально.<br />Состав работ и цена фиксируются в договоре.
+          </p>
+          <div className="stat"><b>от 3 500 <em>₽/м</em></b><small>базовая ставка комплекса</small></div>
+          <div className="stat"><b>3–7 <em>дней</em></b><small>типовой срок монтажа</small></div>
+          <div className="stat"><b>3 <em>года</em></b><small>гарантия по договору</small></div>
+          <div className="stat"><b>200 000 <em>₽</em></b><small>минимальный объект</small></div>
+        </div>
+      </section>
+
+      <section className="wrap section">
+        <Reveal>
+          <div className="section-head">
+            <span className="kicker">Диагностика</span>
+            <h2 className="h2">Участок уже подаёт сигналы.</h2>
+            <p className="lead">
+              Выберите симптом — увидите вероятную причину и логику решения.
+              Это не диагноз, а инженерная гипотеза, которую проверяем на замере.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <ProblemExplorer />
+        </Reveal>
+      </section>
+
+      <section className="section section-dark" id="services">
+        <div className="wrap">
+          <Reveal>
+            <div className="section-head">
+              <span className="kicker">Что мы делаем</span>
+              <h2 className="h2">Система, а не отдельная труба.</h2>
+            </div>
+          </Reveal>
+          <div className="services">
+            {services.map((s, i) => (
+              <Reveal key={s.title} delay={i * 50}>
+                <div className="service-row">
+                  <span className="service-num">0{i + 1}</span>
+                  <span className="service-icon"><s.icon size={26} weight="light" /></span>
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p className="service-note">{s.note}</p>
+                  </div>
+                  <span className="service-arrow"><ArrowRight size={20} weight="bold" /></span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-mist" id="estimate">
+        <div className="wrap">
+          <Reveal>
+            <div className="quiz-frame">
+              <div className="quiz-side">
+                <span className="kicker">Калькулятор проекта</span>
+                <h2 className="h2">Ориентир за минуту.</h2>
+                <p className="lead lead-dark">
+                  Ответьте на четыре вопроса — покажем диапазон стоимости
+                  и логику расчёта. Предварительная схема составляется удалённо бесплатно.
+                </p>
+                <div className="quiz-points">
+                  <p className="quiz-point"><span className="dot" /><span>Считаем по погонажу и точке сброса, <b>а не по площади участка</b></span></p>
+                  <p className="quiz-point"><span className="dot" /><span>Диапазон честный: <b>финальная смета — после замера</b></span></p>
+                  <p className="quiz-point"><span className="dot" /><span>Выезд инженера <b>0 ₽</b> в пределах края и Адыгеи</span></p>
+                </div>
+              </div>
+              <div className="quiz-main">
+                <Calculator />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="wrap section" id="cases">
+        <Reveal>
+          <div className="section-head">
+            <span className="kicker">Демонстрационные объекты</span>
+            <h2 className="h2">Результат виден после первого дождя.</h2>
+            <p className="lead">
+              Структура кейса настоящая, данные — демонстрационные.
+              Реальные фото, погонаж и сметы добавим через админку.
+            </p>
+          </div>
+        </Reveal>
+        <div className="cases">
+          {cases.map((c, i) => (
+            <Reveal key={c.title} delay={i * 70}>
+              <article className="case-card">
+                <div className="case-figure">
+                  <span className="case-tag">Демо-данные</span>
+                  <CaseFigure variant={i} />
+                </div>
+                <div className="case-body">
+                  <span className="case-site">{c.site}</span>
+                  <h3>{c.title}</h3>
+                  <p>{c.text}</p>
+                  <div className="case-metrics">
+                    {c.metrics.map(([value, label]) => (
+                      <div key={label}><b>{value}</b><small>{label}</small></div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-dark" id="technology">
+        <div className="wrap">
+          <Reveal>
+            <div className="section-head">
+              <span className="kicker">Разрез системы</span>
+              <h2 className="h2">Каждый слой работает на результат.</h2>
+              <p className="lead lead-dark">
+                Что находится под землёй и зачем нужен каждый элемент контура.
+                Нажмите на слой, чтобы узнать его роль.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <CutawayDiagram />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section-mist" id="process">
+        <div className="wrap">
+          <Reveal>
+            <div className="section-head">
+              <span className="kicker">Регламент работ</span>
+              <h2 className="h2">Прозрачно от заявки до сдачи.</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="timeline">
+              {processSteps.map(([title, text], i) => (
+                <div className="tl-step" key={title}>
+                  <span className="tl-num">0{i + 1}</span>
+                  <strong>{title}</strong>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section-dark">
+        <div className="wrap">
+          <Reveal>
+            <div className="section-head">
+              <span className="kicker">Ответственность</span>
+              <h2 className="h2">Не обещания, а обязательства.</h2>
+            </div>
+          </Reveal>
+          <div className="guarantees">
+            {guarantees.map((g, i) => (
+              <Reveal key={g.label} delay={i * 70}>
+                <div className="guarantee">
+                  <span className="g-icon"><g.icon size={28} weight="light" /></span>
+                  <b>{g.value}</b>
+                  <span className="g-label">{g.label}</span>
+                  <p>{g.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-cyan">
+        <div className="wrap b2b">
+          <Reveal>
+            <div>
+              <span className="kicker">Для партнёров</span>
+              <h2 className="h2">Дренаж до чистового благоустройства.</h2>
+              <p className="lead" style={{ color: "#0a5561", marginTop: 16, maxWidth: 520 }}>
+                Субподряд для ландшафтных дизайнеров, архитекторов и прорабов.
+                Закрываем подземную часть — вы сдаёте объект в срок.
+              </p>
+              <div className="b2b-list" style={{ marginTop: 30 }}>
+                {["Сохраняем ваши сроки и не перехватываем клиентов", "Агентское вознаграждение по договору", "Один ответственный за весь подземный контур"].map((x) => (
+                  <p className="b2b-item" key={x}><span className="check"><Check size={12} weight="bold" /></span>{x}</p>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="b2b-card">
+              <span className="kicker">Закрытые условия</span>
+              <h3>Обсудить партнёрство</h3>
+              <p>Расскажите о проекте — предложим схему взаимодействия и условия вознаграждения.</p>
+              <a className="cta cta-primary" href="mailto:partners@suhoi-kontur.ru">
+                Обсудить условия
+                <ArrowRight size={15} weight="bold" />
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="wrap section" id="faq">
+        <div className="faq-layout">
+          <Reveal>
+            <div className="section-head" style={{ marginBottom: 0 }}>
+              <span className="kicker">Ответы инженера</span>
+              <h2 className="h2">Что важно знать до начала работ.</h2>
+              <p className="lead">Короткие ответы на вопросы, которые влияют на схему и бюджет водоотведения.</p>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <Faq />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section-mist">
+        <div className="wrap geo">
+          <Reveal>
+            <div className="section-head" style={{ marginBottom: 0 }}>
+              <span className="kicker">География работ</span>
+              <h2 className="h2">Работаем там, где отвечаем за результат.</h2>
+              <p className="lead">
+                Основной маршрут бригады — Краснодар, Адыгея и западная часть края.
+                Это позволяет держать сроки и качество на каждом объекте.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div>
+              <div className="area-list">
+                {areas.map(([name, href], i) => (
+                  <a className="area-item" href={href} key={name}>
+                    <span className="area-num">{String(i + 1).padStart(2, "0")}</span>
+                    {name}
+                    <span className="area-arrow">↗</span>
+                  </a>
+                ))}
+              </div>
+              <p className="geo-excluded">
+                <b>Не работаем:</b> Сочи, Адлер, Красная Поляна и территории южнее Туапсе —
+                нерентабельная логистика и особая горная гидрология.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="final-cta">
+        <div className="wrap">
+          <div>
+            <span className="kicker">Первый шаг — бесплатный</span>
+            <h2 className="h2">Получите схему водоотведения и расчёт.</h2>
+            <p className="lead lead-dark">
+              Предварительная схема дренажа и расчёт стоимости составляются удалённо бесплатно.
+              Выезд инженера-замерщика — 0 ₽ в пределах Краснодарского края и Адыгеи.
+            </p>
+          </div>
+          <div className="hero-actions" style={{ margin: 0 }}>
+            <a className="cta cta-primary" href="#estimate">
+              Вызвать инженера-замерщика
+              <ArrowRight size={15} weight="bold" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+      <MobileCta />
+    </main>
+  );
+}

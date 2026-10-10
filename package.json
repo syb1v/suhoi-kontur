@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.15.9",
+    "@phosphor-icons/react": "^2.1.10",
     "bcryptjs": "^3.0.2",
     "drizzle-orm": "^0.44.5",
     "next": "^15.5.4",
